@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .bg-white {
+        background-color: white
+    }
+    .primary-50 {
+        @apply bg-purple-50
+    }
+    .primary-100 {
+        @apply bg-purple-100
+    }
+    .primary-200 {
+        @apply bg-purple-200
+    }
+    .primary-300 {
+        @apply bg-purple-300
+    }
+    .primary-400 {
+        @apply bg-purple-400
+    }
+    .primary-500 {
+        @apply bg-purple-500
+    }
+    .primary-600 {
+        @apply bg-purple-600
+    }
+    .primary-700 {
+        @apply bg-purple-700
+    }
+    .primary-800 {
+        @apply bg-purple-800
+    }
+    .primary-900 {
+        @apply bg-purple-900
+    }
+
+}
