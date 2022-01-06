@@ -19,10 +19,6 @@ const routes = [
         path: "create-group",
         component: () => import("./pages/subpages/CreateGroup.vue"),
       },
-      {
-        path: "profile",
-        component: () => import("./pages/subpages/Profile.vue"),
-      },
     ],
   },
 ];

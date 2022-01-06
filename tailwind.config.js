@@ -4,12 +4,12 @@ module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      gray: colors.trueGray,
-      purple: colors.purple,
-      green: colors.green,
-      red: colors.red,
-    },
+    // colors: {
+    //   gray: colors.trueGray,
+    //   purple: colors.purple,
+    //   green: colors.green,
+    //   red: colors.red,
+    // },
     extend: {
       fontFamily: {
         main: ["Montserrat"],
@@ -29,5 +29,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [colors],
 };

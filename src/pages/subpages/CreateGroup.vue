@@ -1,15 +1,48 @@
+<template>
+  <section class="font-main text-gray-50">
+    <div class="px-6 mt-4 w-full font-main mb-4">
+      <span class="pb-2 font-medium">Groupname</span>
+      <input
+        type="text"
+        name=""
+        id=""
+        class="rounded w-full px-4 py-2 font-main text-gray-900 text-base outline-none focus:ring-2 ring-sky-400"
+        placeholder="Enter a groupname"
+      />
+    </div>
+    <div class="border-t border-gray-50">
+      <UserAdd
+        v-for="(user, index) in users"
+        :key="index"
+        :user="user"
+      ></UserAdd>
+    </div>
+
+    <div class="border-t border-gray-50 mt-6">
+      <UserDelete
+        v-for="(user, index) in usersDelete"
+        :key="index"
+        :userDelete="user"
+      ></UserDelete>
+    </div>
+    <div class="w-full">
+      <button
+        class="w-full bg-gradient-to-br py-4 from-cyan-500 to-sky-600 hover:from-cyan-600 hover:to-sky-700 font-medium"
+      >
+        Create group
+      </button>
+    </div>
+  </section>
+</template>
+
 <script>
-import UserAddContainer from "../../components/UserAddContainer.vue";
+import UserAdd from "../../components/UserAdd.vue";
 import UserDelete from "../../components/UserDelete.vue";
-import InputRound from "../../components/InputRound.vue";
-import Button from "../../components/Button.vue";
 
 export default {
   components: {
-    UserAddContainer,
+    UserAdd,
     UserDelete,
-    InputRound,
-    Button,
   },
   data() {
     return {
@@ -19,58 +52,5 @@ export default {
   },
 };
 </script>
-
-<template>
-  <section>
-    <section
-      class="
-        flex flex-row
-        w-full
-        justify-between
-        px-6
-        py-2
-        font-main
-        text-gray-600
-        font-medium
-        bg-pruple-50
-        border-b border-purple-600
-      "
-    >
-      <router-link
-        to="/home/add-user"
-        class="hover:text-gray-800 transition-all duration-150"
-        >Add user</router-link
-      >
-      <router-link
-        to="/home"
-        class="hover:text-gray-800 transition-all duration-150"
-        >Chats</router-link
-      >
-    </section>
-    <div class="px-6 w-full">
-      <InputRound
-        class="w-full my-2 box-border"
-        placeholder="Groupname"
-      ></InputRound>
-    </div>
-    <h3 class="text-base font-main font-medium mx-6 my-3">Add Friends</h3>
-    <UserAddContainer
-      v-for="(user, index) in users"
-      :key="index"
-      :user="user"
-    ></UserAddContainer>
-    <h3 class="text-base font-main font-medium mx-6 mb-4 mt-6">
-      Group members
-    </h3>
-    <UserDelete
-      v-for="(user, index) in usersDelete"
-      :key="index"
-      :userDelete="user"
-    ></UserDelete>
-    <div class="px-6 w-full">
-      <Button :content="'Create group'" class="my-4 w-full"></Button>
-    </div>
-  </section>
-</template>
 
 <style></style>

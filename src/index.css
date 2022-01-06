@@ -3,38 +3,74 @@
 @tailwind utilities;
 
 @layer components {
-    .bg-white {
-        background-color: white
+    /* ***** BACKGROUND COLORS ***** */
+    .bg-dark-1 {
+        @apply bg-sky-900
     }
-    .primary-50 {
-        @apply bg-purple-50
+    .bg-dark-2 {
+        @apply bg-sky-800
     }
-    .primary-100 {
-        @apply bg-purple-100
+    .bg-light-1 {
+        @apply bg-sky-50
     }
-    .primary-200 {
-        @apply bg-purple-200
+    .bg-gradient {
+        @apply bg-gradient-to-br from-cyan-500 to-sky-600 hover:from-cyan-600 hover:to-sky-700
     }
-    .primary-300 {
-        @apply bg-purple-300
-    }
-    .primary-400 {
-        @apply bg-purple-400
-    }
-    .primary-500 {
-        @apply bg-purple-500
-    }
-    .primary-600 {
-        @apply bg-purple-600
-    }
-    .primary-700 {
-        @apply bg-purple-700
-    }
-    .primary-800 {
-        @apply bg-purple-800
-    }
-    .primary-900 {
-        @apply bg-purple-900
+    .bg-gradient-dark {
+        @apply bg-gradient-to-br from-cyan-700 to-sky-800
     }
 
+    /* ***** TEXT COLORS ***** */
+    .warning-text {
+        @apply text-red-700 text-sm
+    }
+    /* ***** COMPONENTS FOR AUTH PAGES ***** */
+    .input-round {
+        @apply block px-6 py-3.5 bg-gray-100 rounded-full text-base font-main w-full
+    }
+    .btn-round {
+        @apply block py-3.5 text-base font-medium font-main rounded-full text-gray-50 bg-gradient mb-4 mt-6 w-full
+    }
+    .container-form {
+        @apply flex flex-col justify-center items-center w-screen h-screen font-main
+    }
+    .form-auth {
+        @apply flex flex-col items-center w-full sm:w-96 px-6 sm:px-0
+    }
+    .link-auth {
+        @apply text-cyan-600 font-medium
+    }
+    /* ***** COMPONENTS FOR HOMEPAGE ***** */
+    .sidebar-link {
+        @apply flex justify-center items-center w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-sky-600 hover:from-cyan-600 hover:to-sky-700 cursor-pointer
+    }
+    .sidebar-link img {
+        @apply h-6 w-6
+    }
+    .user-menu-dot {
+        @apply bg-gray-50 h-1 w-1 rounded-full
+    }
+    /* ***** STYLES FOR COMPONENTS / COMPONENTS: UserAdd, UserDelete ***** */
+    .user-action-container {
+        @apply relative flex flex-row items-center w-full px-6 py-4 border-b border-gray-50
+    }
+    /* ***** STYLES FOR COMPONENTS / COMPONENTS: Message ***** */
+    .container-base {
+        @apply flex flex-col font-main mb-4 w-full text-gray-900
+    }
+    .partner-container {
+        @apply container-base justify-start
+    }
+    .my-container {
+        @apply container-base items-end
+    }
+    .message-base {
+        @apply flex px-4 py-3 max-w-2/3 rounded mb-1;
+      }
+      .partner-message {
+        @apply message-base justify-start bg-sky-200;
+      }
+      .my-message {
+        @apply message-base justify-end bg-sky-400;
+      }
 }
