@@ -7,7 +7,7 @@
     </div>
     <button
       class="absolute right-6 p-2 rounded bg-gradient"
-      @click.prevent="addUser"
+      @click.prevent="addUserToGroup"
     >
       <img src="../assets/Icons/Shape.svg" alt="Add" class="h-4 w-4" />
     </button>
@@ -24,8 +24,8 @@ export default {
     };
   },
   methods: {
-    addUser() {
-      this.$store.dispatch("addUser", {
+    addUserToGroup() {
+      this.$store.commit("setGroup", {
         email: this.userEmail,
         username: this.userName,
       });

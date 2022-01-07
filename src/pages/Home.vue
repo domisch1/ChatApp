@@ -31,7 +31,10 @@
       <div
         class="relative flex items-center p-4 col-span-1 row-span-1 border-t border-gray-50"
       >
-        <span class="text-lg">Dominik Schneider</span>
+        <div class="flex flex-col">
+          <p class="text-lg">{{ this.$store.state.username }}</p>
+          <p class="text-xs">{{ this.$store.state.email }}</p>
+        </div>
         <button
           class="absolute right-4"
           @click.prevent="this.$store.dispatch('logout')"

@@ -72,14 +72,11 @@ export default {
       }
     },
     checkPassword() {
-      console.log("ehy");
       if (this.user.password.length >= 6) {
         this.confirmation.password = false;
       } else {
         this.confirmation.password = true;
       }
-      console.log(this.confirmation.password);
-      console.log(this.user.password);
     },
   },
 };

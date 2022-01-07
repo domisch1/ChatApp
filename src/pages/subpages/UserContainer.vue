@@ -1,12 +1,10 @@
 <template>
   <section class="flex flex-col w-full">
     <User
-      v-for="(user, index) in users"
+      v-for="(user, index) in this.$store.state.addedUsers"
       :key="index"
-      :userName="user.userName"
+      :userName="user.username"
       :avatar="user.avatar"
-      :newMessages="user.newMessages"
-      :online="user.online"
     ></User>
   </section>
 </template>
@@ -17,66 +15,6 @@ import User from "../../components/User.vue";
 export default {
   components: {
     User,
-  },
-  data() {
-    return {
-      users: [
-        {
-          userName: "Matt Cooper",
-          avatar: "M",
-          newMessages: "3",
-          online: true,
-        },
-        {
-          userName: "Amanda Star",
-          avatar: "A",
-          newMessages: "2",
-          online: false,
-        },
-        {
-          userName: "John Wick",
-          avatar: "J",
-          newMessages: "0",
-          online: true,
-        },
-        {
-          userName: "Matt Cooper",
-          avatar: "M",
-          newMessages: "3",
-          online: true,
-        },
-        {
-          userName: "Amanda Star",
-          avatar: "A",
-          newMessages: "2",
-          online: false,
-        },
-        {
-          userName: "John Wick",
-          avatar: "J",
-          newMessages: "0",
-          online: true,
-        },
-        {
-          userName: "Matt Cooper",
-          avatar: "M",
-          newMessages: "3",
-          online: true,
-        },
-        {
-          userName: "Amanda Star",
-          avatar: "A",
-          newMessages: "2",
-          online: false,
-        },
-        {
-          userName: "John Wick",
-          avatar: "J",
-          newMessages: "0",
-          online: true,
-        },
-      ],
-    };
   },
 };
 </script>

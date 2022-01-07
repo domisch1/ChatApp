@@ -11,24 +11,24 @@
       />
     </div>
     <div class="border-t border-gray-50">
-      <UserAdd
-        v-for="(user, index) in users"
+      <UserAddGroup
+        v-for="(user, index) in this.$store.state.addedUsers"
         :key="index"
-        :user="user"
-      ></UserAdd>
+        :user="user.username"
+        :email="user.email"
+      ></UserAddGroup>
     </div>
 
     <div class="border-t border-gray-50 mt-6">
       <UserDelete
-        v-for="(user, index) in usersDelete"
+        v-for="(user, index) in this.$store.state.userGroup"
         :key="index"
-        :userDelete="user"
+        :userDelete="user.username"
+        :email="user.email"
       ></UserDelete>
     </div>
     <div class="w-full">
-      <button
-        class="w-full bg-gradient-to-br py-4 from-cyan-500 to-sky-600 hover:from-cyan-600 hover:to-sky-700 font-medium"
-      >
+      <button class="w-full bg-gradient-to-br py-4 bg-gradient font-medium">
         Create group
       </button>
     </div>
@@ -36,19 +36,13 @@
 </template>
 
 <script>
-import UserAdd from "../../components/UserAdd.vue";
+import UserAddGroup from "../../components/UserAddGroup.vue";
 import UserDelete from "../../components/UserDelete.vue";
 
 export default {
   components: {
-    UserAdd,
+    UserAddGroup,
     UserDelete,
-  },
-  data() {
-    return {
-      users: ["Monica Cola", "Jason Moon", "Mirana Trup", "Iko Aka"],
-      usersDelete: ["Monica Cola", "Jason Moon", "Mirana Trup", "Iko Aka"],
-    };
   },
 };
 </script>
