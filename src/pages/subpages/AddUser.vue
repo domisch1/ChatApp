@@ -1,5 +1,5 @@
 <template>
-  <section class="relative">
+  <section class="relative" :key="this.$store.state.componentKeyAddUser">
     <UserAdd
       v-for="(user, index) in this.$store.getters.filteredUsers"
       :key="index"

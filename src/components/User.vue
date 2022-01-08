@@ -1,5 +1,7 @@
 <template>
-  <section class="flex flex-row items-center px-6 py-4 bg-gradient">
+  <section
+    class="flex flex-row items-center px-6 py-4 bg-gradient cursor-pointer"
+  >
     <div class="relative">
       <div
         class="relative flex justify-center items-center h-10 w-10 mr-4 rounded-full bg-gradient-dark"

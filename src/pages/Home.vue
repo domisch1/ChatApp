@@ -51,7 +51,9 @@
     <div class="grid grid-rows-8 grid-cols-1 col-span-8 row-span-full">
       <div class="col-span-1 row-span-1 p-8 flex items-center bg-dark-1">
         <div class="flex flex-col">
-          <span class="text-xl">Gunter Steiner</span>
+          <span class="text-xl">
+            {{ this.$store.state.activeChat.username }}
+          </span>
           <span class="text-lg text-gray-300">online</span>
         </div>
         <div class="absolute right-8 flex flex-col cursor-pointer">
@@ -62,11 +64,12 @@
       </div>
       <div class="col-span-1 row-span-6 p-4 overflow-y-scroll bg-light-1">
         <Message
-          v-for="(message, index) in messages"
+          v-for="(message, index) in this.$store.getters.filteredMessages"
           :key="index"
-          :messageClass="message.myMessage"
-          :message="message.content"
+          :messageClass="message.sender"
+          :message="message.message"
           :time="message.time"
+          :date="message.date"
         ></Message>
       </div>
       <div
@@ -74,14 +77,16 @@
       >
         <input
           type="text"
-          class="rounded-full w-full text-lg h-12 font-main pl-4 outline-none focus:ring-2 ring-sky-400"
+          class="rounded-full w-full text-lg h-12 font-main text-gray-900 pl-4 outline-none focus:ring-2 ring-sky-400"
           placeholder="Your message..."
+          v-model="message"
         />
-        <div
+        <button
           class="absolute flex justify-center items-center right-9 h-10 w-10 rounded-full bg-gradient-to-br bg-gradient cursor-pointer"
+          @click.prevent="sendMessage"
         >
           <img src="../assets/Icons/Share.svg" alt="Send" class="h-4 w-4" />
-        </div>
+        </button>
       </div>
     </div>
   </section>
@@ -98,59 +103,16 @@ export default {
   },
   data() {
     return {
-      messages: [
-        {
-          content: "Hey there! What's going on?",
-          time: "14:32 Uhr",
-          myMessage: false,
-        },
-        {
-          content: "Im good, thanks for asking. What about you?",
-          time: "14:35 Uhr",
-          myMessage: true,
-        },
-        {
-          content: "By the way, have a great day!",
-          time: "14:36 Uhr",
-          myMessage: true,
-        },
-        {
-          content: "Thanks, you too!",
-          time: "14:39 Uhr",
-          myMessage: false,
-        },
-        {
-          content: "Im good, thanks for asking. What about you?",
-          time: "14:35 Uhr",
-          myMessage: true,
-        },
-        {
-          content: "By the way, have a great day!",
-          time: "14:36 Uhr",
-          myMessage: true,
-        },
-        {
-          content: "Thanks, you too!",
-          time: "14:39 Uhr",
-          myMessage: false,
-        },
-        {
-          content: "Im good, thanks for asking. What about you?",
-          time: "14:35 Uhr",
-          myMessage: true,
-        },
-        {
-          content: "By the way, have a great day!",
-          time: "14:36 Uhr",
-          myMessage: true,
-        },
-        {
-          content: "Thanks, you too!",
-          time: "14:39 Uhr",
-          myMessage: false,
-        },
-      ],
+      message: "",
     };
+  },
+  methods: {
+    sendMessage() {
+      this.$store.dispatch("sendMessage", {
+        message: this.message,
+      });
+      this.message = "";
+    },
   },
 };
 </script>

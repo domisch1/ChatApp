@@ -1,5 +1,8 @@
 <template>
-  <section class="font-main text-gray-50">
+  <section
+    class="font-main text-gray-50"
+    :key="this.$store.state.componentKeyCreateGroup"
+  >
     <div class="px-6 mt-4 w-full font-main mb-4">
       <span class="pb-2 font-medium">Groupname</span>
       <input
@@ -12,10 +15,11 @@
     </div>
     <div class="border-t border-gray-50">
       <UserAddGroup
-        v-for="(user, index) in this.$store.state.addedUsers"
+        v-for="(user, index) in this.$store.state.userListGroup"
         :key="index"
         :user="user.username"
         :email="user.email"
+        :userIndex="index"
       ></UserAddGroup>
     </div>
 

@@ -16,18 +16,20 @@
 
 <script>
 export default {
-  props: ["user", "email"],
+  props: ["user", "email", "userIndex"],
   data() {
     return {
       userName: this.user,
       userEmail: this.email,
+      index: this.userIndex,
     };
   },
   methods: {
-    addUserToGroup() {
+    addUserToGroup(index) {
       this.$store.commit("setGroup", {
         email: this.userEmail,
         username: this.userName,
+        index: this.index,
       });
     },
   },
