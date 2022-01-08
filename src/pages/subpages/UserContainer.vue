@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col w-full">
     <User
-      v-for="(user, index) in this.$store.state.addedUsers"
+      v-for="(user, index) in this.$store.state.userHandlingModule.addedUsers"
       :key="index"
       :userName="user.username"
       :avatar="user.avatar"

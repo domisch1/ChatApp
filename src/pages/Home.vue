@@ -32,8 +32,8 @@
         class="relative flex items-center p-4 col-span-1 row-span-1 border-t border-gray-50"
       >
         <div class="flex flex-col">
-          <p class="text-lg">{{ this.$store.state.username }}</p>
-          <p class="text-xs">{{ this.$store.state.email }}</p>
+          <p class="text-lg">{{ this.$store.state.authModule.username }}</p>
+          <p class="text-xs">{{ this.$store.state.authModule.email }}</p>
         </div>
         <button
           class="absolute right-4"
@@ -52,7 +52,7 @@
       <div class="col-span-1 row-span-1 p-8 flex items-center bg-dark-1">
         <div class="flex flex-col">
           <span class="text-xl">
-            {{ this.$store.state.activeChat.username }}
+            {{ this.$store.state.chatModule.activeChat.username }}
           </span>
           <span class="text-lg text-gray-300">online</span>
         </div>
@@ -63,6 +63,12 @@
         </div>
       </div>
       <div class="col-span-1 row-span-6 p-4 overflow-y-scroll bg-light-1">
+        <div
+          class="w-full h-full flex justify-center items-center"
+          v-if="this.$store.state.chatModule.activeChat.docID === undefined"
+        >
+          <span class="text-xl text-gray-900">Please select a chat!</span>
+        </div>
         <Message
           v-for="(message, index) in this.$store.getters.filteredMessages"
           :key="index"
@@ -80,10 +86,17 @@
           class="rounded-full w-full text-lg h-12 font-main text-gray-900 pl-4 outline-none focus:ring-2 ring-sky-400"
           placeholder="Your message..."
           v-model="message"
+          @keyup.enter="sendMessage"
+          :disabled="
+            this.$store.state.chatModule.activeChat.docID === undefined
+          "
         />
         <button
           class="absolute flex justify-center items-center right-9 h-10 w-10 rounded-full bg-gradient-to-br bg-gradient cursor-pointer"
           @click.prevent="sendMessage"
+          :disabled="
+            this.$store.state.chatModule.activeChat.docID === undefined
+          "
         >
           <img src="../assets/Icons/Share.svg" alt="Send" class="h-4 w-4" />
         </button>

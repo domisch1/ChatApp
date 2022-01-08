@@ -24,6 +24,7 @@ export default {
   },
   created() {
     this.$store.dispatch("watchAuth");
+    // this.$store.dispatch("test");
   },
   mounted() {
     window.addEventListener("resize", this.changeWidth);

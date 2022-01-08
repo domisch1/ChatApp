@@ -1,7 +1,7 @@
 <template>
   <section
     class="font-main text-gray-50"
-    :key="this.$store.state.componentKeyCreateGroup"
+    :key="this.$store.state.userHandlingModule.componentKeyCreateGroup"
   >
     <div class="px-6 mt-4 w-full font-main mb-4">
       <span class="pb-2 font-medium">Groupname</span>
@@ -15,7 +15,8 @@
     </div>
     <div class="border-t border-gray-50">
       <UserAddGroup
-        v-for="(user, index) in this.$store.state.userListGroup"
+        v-for="(user, index) in this.$store.state.userHandlingModule
+          .userListGroup"
         :key="index"
         :user="user.username"
         :email="user.email"
@@ -25,7 +26,7 @@
 
     <div class="border-t border-gray-50 mt-6">
       <UserDelete
-        v-for="(user, index) in this.$store.state.userGroup"
+        v-for="(user, index) in this.$store.state.userHandlingModule.userGroup"
         :key="index"
         :userDelete="user.username"
         :email="user.email"

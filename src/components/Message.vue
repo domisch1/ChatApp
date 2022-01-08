@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     myMessage() {
-      if (this.messageSender === this.$store.state.email) {
+      if (this.messageSender === this.$store.state.authModule.email) {
         return true;
       } else {
         return false;
