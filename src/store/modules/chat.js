@@ -26,6 +26,7 @@ export default {
   },
   mutations: {
     setActiveChat(state, payload) {
+      state.activeChat = {};
       state.activeChat = {
         docID: payload.docID,
         email: payload.email,
@@ -33,6 +34,16 @@ export default {
         partner1: payload.partner1,
         partner2: payload.partner2,
       };
+    },
+    setActiveGroupChat(state, payload) {
+      state.activeChat = {};
+      state.activeChat = {
+        groupID: payload.groupID,
+        groupname: payload.groupname,
+        emails: payload.emails,
+        usernames: payload.usernames,
+      };
+      console.log(state.activeChat);
     },
     updateMessageSize(state, payload) {
       state.messageSize = payload.messageSize;

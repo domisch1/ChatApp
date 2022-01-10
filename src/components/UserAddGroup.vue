@@ -25,7 +25,7 @@ export default {
     };
   },
   methods: {
-    addUserToGroup(index) {
+    addUserToGroup() {
       this.$store.commit("setGroup", {
         email: this.userEmail,
         username: this.userName,

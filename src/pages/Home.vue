@@ -65,7 +65,10 @@
       <div class="col-span-1 row-span-6 p-4 overflow-y-scroll bg-light-1">
         <div
           class="w-full h-full flex justify-center items-center"
-          v-if="this.$store.state.chatModule.activeChat.docID === undefined"
+          v-if="
+            this.$store.state.chatModule.activeChat.docID === undefined &&
+            this.$store.state.chatModule.activeChat.groupID === undefined
+          "
         >
           <span class="text-xl text-gray-900">Please select a chat!</span>
         </div>
@@ -76,6 +79,7 @@
           :message="message.message"
           :time="message.time"
           :date="message.date"
+          :user="message.username"
         ></Message>
       </div>
       <div
@@ -87,9 +91,6 @@
           placeholder="Your message..."
           v-model="message"
           @keyup.enter="sendMessage"
-          :disabled="
-            this.$store.state.chatModule.activeChat.docID === undefined
-          "
         />
         <button
           class="absolute flex justify-center items-center right-9 h-10 w-10 rounded-full bg-gradient-to-br bg-gradient cursor-pointer"
@@ -121,10 +122,22 @@ export default {
   },
   methods: {
     sendMessage() {
-      this.$store.dispatch("sendMessage", {
-        message: this.message,
-      });
-      this.message = "";
+      if (
+        // this.$store.state.chatModule.activeChat.groupID === this.groupID &&
+        this.$store.state.chatModule.activeChat.groupID !== undefined
+      ) {
+        console.log("true");
+        this.$store.dispatch("sendGroupMessage", {
+          message: this.message,
+        });
+        this.message = "";
+      } else {
+        console.log("false");
+        this.$store.dispatch("sendMessage", {
+          message: this.message,
+        });
+        this.message = "";
+      }
     },
   },
 };

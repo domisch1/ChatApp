@@ -6,18 +6,16 @@ import {
   collection,
   onSnapshot,
   query,
+  where,
 } from "@firebase/firestore";
 import { auth, db } from "../../firebase";
 
 export default {
   state() {
     return {
-      componentKeyCreateGroup: 0,
       componentKeyAddUser: 0,
       userList: [],
       addedUsers: [],
-      userListGroup: [],
-      userGroup: [],
     };
   },
   getters: {
@@ -50,17 +48,9 @@ export default {
       payload.forEach((user) => {
         state.addedUsers.push(user.data());
       });
-      payload.forEach((user) => {
-        state.userListGroup.push(user.data());
-      });
     },
     renderPage(state) {
       state.componentKeyAddUser += 1;
-    },
-    setGroup(state, payload) {
-      state.userListGroup.splice(payload.index, 1);
-      state.userGroup.push(payload);
-      state.componentKeyCreateGroup += 1;
     },
   },
   actions: {
@@ -109,12 +99,21 @@ export default {
       const addedUsersRef = query(collection(db, "users", email, "addedUsers"));
       const addedUsersSub = onSnapshot(addedUsersRef, (snap) => {
         context.commit("setAddedUsers", snap);
+        context.commit("setUserListGroup", snap);
+      });
+      const groupRef = query(
+        collection(db, "groups"),
+        where("userEmails", "array-contains", email)
+      );
+      const groupsSub = onSnapshot(groupRef, (snap) => {
+        context.commit("setAddedGroups", snap);
       });
       onAuthStateChanged(auth, (user) => {
         if (user) {
         } else {
           usersSub();
           addedUsersSub();
+          groupsSub();
         }
       });
     },

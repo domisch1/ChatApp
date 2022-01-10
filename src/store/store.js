@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import authModule from "./modules/auth";
 import userHandlingModule from "./modules/userHandling";
 import chatModule from "./modules/chat";
+import groupModule from "./modules/group";
 
 const store = createStore({
   state() {
@@ -29,6 +30,7 @@ const store = createStore({
     authModule: authModule,
     userHandlingModule: userHandlingModule,
     chatModule: chatModule,
+    groupModule: groupModule,
   },
 });
 
