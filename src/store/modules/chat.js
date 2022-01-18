@@ -39,7 +39,7 @@ export default {
       state.activeChat = {};
       state.activeChat = {
         groupID: payload.groupID,
-        groupname: payload.groupname,
+        username: payload.groupname,
         emails: payload.emails,
         usernames: payload.usernames,
       };

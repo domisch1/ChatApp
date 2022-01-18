@@ -38,7 +38,7 @@ export default {
     setUserList(state, payload) {
       state.userList = [];
       payload.forEach((user) => {
-        if (user.data().email !== state.email) {
+        if (user.data().email !== this.state.authModule.email) {
           state.userList.push(user.data());
         }
       });

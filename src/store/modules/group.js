@@ -20,6 +20,7 @@ export default {
   getters: {},
   mutations: {
     setUserListGroup(state, payload) {
+      state.userListGroup = [];
       payload.forEach((user) => {
         state.userListGroup.push(user.data());
       });
@@ -35,12 +36,10 @@ export default {
       state.componentKeyCreateGroup += 1;
     },
     resetGroup(state) {
-      let i = 0;
       state.userGroup.forEach((user) => {
         state.userListGroup.push(user);
-        state.userGroup.splice(i, 1);
-        i++;
       });
+      state.userGroup = [];
       state.componentKeyCreateGroup += 1;
     },
     setAddedGroups(state, payload) {
@@ -78,17 +77,13 @@ export default {
     },
     async openGroupChat(context, payload) {
       context.commit("resetMessages");
-      // const groupChatRef = doc(db, "groups", payload.groupID);
-      // const snapshot = await getDocs(groupChatRef);
       console.log(payload);
-      // snapshot.forEach((doc) => {
       context.commit("setActiveGroupChat", {
         groupID: payload.groupID,
         groupname: payload.groupname,
         emails: payload.emails,
         usernames: payload.usernames,
       });
-      // });
       context.dispatch("getGroupMessages");
     },
     getGroupMessages(context) {

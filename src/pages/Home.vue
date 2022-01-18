@@ -4,21 +4,43 @@
   >
     <!-- ***** SIDEBAR NAV ***** -->
     <div
-      class="flex pt-40 items-center flex-col col-span-1 row-span-full bg-dark-1"
+      class="flex pt-40 items-center flex-col col-span-3 sm:col-span-1 row-span-full bg-dark-1"
     >
-      <router-link to="/home" class="sidebar-link">
+      <div
+        class="absolute top-20 block w-10"
+        @click="toggleMenu"
+        v-if="this.getWidth < 640"
+      >
+        <span class="block bg-gray-50 rounded h-0.5 w-full"></span>
+        <span class="block bg-gray-50 rounded h-0.5 w-full my-2"></span>
+        <span class="block bg-gray-50 rounded h-0.5 w-full"></span>
+      </div>
+      <router-link
+        to="/home"
+        class="sidebar-link"
+        exact-active-class="bg-gradient-dark"
+      >
         <img src="../assets/Icons/ChattingIcon.svg" alt="Chat" />
       </router-link>
-      <router-link to="/home/add-user" class="sidebar-link my-8">
+      <router-link
+        to="/home/add-user"
+        class="sidebar-link my-8"
+        exact-active-class="bg-gradient-dark"
+      >
         <img src="../assets/Icons/AddUser.svg" alt="Add friends" />
       </router-link>
-      <router-link to="/home/create-group" class="sidebar-link">
+      <router-link
+        to="/home/create-group"
+        class="sidebar-link"
+        exact-active-class="bg-gradient-dark"
+      >
         <img src="../assets/Icons/Share.svg" alt="Send" />
       </router-link>
     </div>
     <!-- ***** SIDEBAR ***** -->
     <div
-      class="grid grid-rows-8 grid-cols-1 col-span-3 row-span-full bg-dark-2"
+      class="grid grid-rows-8 grid-cols-1 col-span-9 sm:col-span-3 row-span-full bg-dark-2"
+      v-if="togglerMenu"
     >
       <div
         class="col-span-1 row-span-1 p-4 flex items-center bg-dark-2 border-b border-gray-50"
@@ -48,19 +70,24 @@
       </div>
     </div>
     <!-- ***** CHAT WINDOW ***** -->
-    <div class="grid grid-rows-8 grid-cols-1 col-span-8 row-span-full">
-      <div class="col-span-1 row-span-1 p-8 flex items-center bg-dark-1">
+    <div
+      class="grid grid-rows-8 grid-cols-1 col-span-9 sm:col-span-8 row-span-full"
+      v-if="togglerChat"
+    >
+      <div
+        class="col-span-1 row-span-1 p-8 flex items-center bg-dark-1 border-b border-gray-50"
+      >
         <div class="flex flex-col">
           <span class="text-xl">
             {{ this.$store.state.chatModule.activeChat.username }}
           </span>
-          <span class="text-lg text-gray-300">online</span>
+          <!-- <span class="text-lg text-gray-300">online</span> -->
         </div>
-        <div class="absolute right-8 flex flex-col cursor-pointer">
+        <!-- <div class="absolute right-8 flex flex-col cursor-pointer">
           <span class="user-menu-dot"></span>
           <span class="user-menu-dot my-1"></span>
           <span class="user-menu-dot"></span>
-        </div>
+        </div> -->
       </div>
       <div class="col-span-1 row-span-6 p-4 overflow-y-scroll bg-light-1">
         <div
@@ -83,7 +110,7 @@
         ></Message>
       </div>
       <div
-        class="flex justify-center items-center p-8 col-span-1 row-span-1 bg-dark-1"
+        class="flex justify-center items-center p-8 col-span-1 row-span-1 bg-dark-1 border-t border-gray-50"
       >
         <input
           type="text"
@@ -118,9 +145,40 @@ export default {
   data() {
     return {
       message: "",
+      togglerMenu: true,
+      togglerChat: true,
+      screenWidth: window.innerWidth,
     };
   },
+  computed: {
+    getWidth() {
+      return this.screenWidth;
+    },
+  },
+  mounted() {
+    if (this.screenWidth > 640) {
+      this.togglerChat = true;
+      this.togglerMenu = true;
+    } else {
+      this.togglerChat = true;
+      this.togglerMenu = false;
+    }
+    window.addEventListener("resize", this.changeWidth);
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.changeWidth);
+  },
   methods: {
+    changeWidth() {
+      if (this.screenWidth > 640) {
+        this.togglerChat = true;
+        this.togglerMenu = true;
+      } else {
+        this.togglerChat = true;
+        this.togglerMenu = false;
+      }
+      this.screenWidth = window.innerWidth;
+    },
     sendMessage() {
       if (
         // this.$store.state.chatModule.activeChat.groupID === this.groupID &&
@@ -138,6 +196,11 @@ export default {
         });
         this.message = "";
       }
+    },
+    toggleMenu() {
+      this.togglerChat = !this.togglerChat;
+      this.togglerMenu = !this.togglerMenu;
+      console.log(this.toggler);
     },
   },
 };

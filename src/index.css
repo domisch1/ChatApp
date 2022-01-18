@@ -3,23 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-    /* ***** BACKGROUND COLORS ***** */
-    .bg-dark-1 {
-        @apply bg-sky-900
-    }
-    .bg-dark-2 {
-        @apply bg-sky-800
-    }
-    .bg-light-1 {
-        @apply bg-sky-50
-    }
-    .bg-gradient {
-        @apply bg-gradient-to-br from-cyan-500 to-sky-600 hover:from-cyan-600 hover:to-sky-700
-    }
-    .bg-gradient-dark {
-        @apply bg-gradient-to-br from-cyan-700 to-sky-800
-    }
-
     /* ***** TEXT COLORS ***** */
     .warning-text {
         @apply text-red-700 text-sm
@@ -67,10 +50,26 @@
     .message-base {
         @apply flex px-4 py-3 max-w-2/3 rounded mb-1;
       }
-      .partner-message {
+    .partner-message {
         @apply message-base justify-start bg-sky-200;
-      }
-      .my-message {
+    }
+    .my-message {
         @apply message-base justify-end bg-sky-400;
-      }
+    }
+    /* ***** BACKGROUND COLORS ***** */
+    .bg-dark-1 {
+        @apply bg-sky-900
+    }
+    .bg-dark-2 {
+        @apply bg-sky-800
+    }
+    .bg-light-1 {
+        @apply bg-sky-50
+    }
+    .bg-gradient {
+        @apply bg-gradient-to-br from-cyan-500 to-sky-600 hover:from-cyan-600 hover:to-sky-700
+    }
+    .bg-gradient-dark {
+        @apply bg-gradient-to-br from-cyan-700 to-sky-800
+    }
 }

@@ -1,12 +1,12 @@
 <template>
   <section>
-    <div
+    <!-- <div
       class="h-screen w-screen flex justify-center items-center"
       v-if="this.getWidth <= 640"
     >
       <h1 class="font-main text-3xl">Mobile coming soon</h1>
-    </div>
-    <router-view class="" v-if="this.getWidth >= 640"></router-view>
+    </div> -->
+    <router-view class=""></router-view>
   </section>
 </template>
 
