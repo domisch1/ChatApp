@@ -47,7 +47,6 @@ export default {
           updateProfile(auth.currentUser, {
             displayName: payload.username,
           });
-          console.log(user);
           router.push("/home");
           context.dispatch("setUser", {
             email: payload.email,
@@ -66,7 +65,6 @@ export default {
             username: data.user.displayName,
             email: data.user.email,
           });
-          console.log(data);
           router.push("/home");
         })
         .catch((error) => {
@@ -79,7 +77,6 @@ export default {
           context.commit("setAuth");
           context.commit("setUsername");
           context.commit("resetAll");
-          console.log("signed out");
           router.push("/");
         })
         .catch((error) => {
@@ -95,7 +92,6 @@ export default {
             email: user.email,
           });
           context.dispatch("getData");
-          console.log(user);
           router.push("/home");
         } else {
           context.commit("setAuth");

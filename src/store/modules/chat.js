@@ -43,7 +43,6 @@ export default {
         emails: payload.emails,
         usernames: payload.usernames,
       };
-      console.log(state.activeChat);
     },
     updateMessageSize(state, payload) {
       state.messageSize = payload.messageSize;
@@ -89,7 +88,6 @@ export default {
           today = "0" + date.getDate() + "." + month + "." + date.getFullYear();
         }
       }
-      console.log(context.state.activeChat.docID);
       await addDoc(
         collection(db, "chats", context.state.activeChat.docID, "messages"),
         {
@@ -101,7 +99,6 @@ export default {
           index: context.state.messageSize,
         }
       );
-      console.log(time + ", " + today);
     },
     async openChat(context, payload) {
       context.commit("resetMessages");

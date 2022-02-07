@@ -67,7 +67,6 @@ export default {
     async addUser(context, payload) {
       const email = context.rootState.authModule.email;
       const avatar = payload.username[0].toUpperCase();
-      console.log(avatar);
       await setDoc(doc(db, "users", email, "addedUsers", payload.email), {
         email: payload.email,
         username: payload.username,

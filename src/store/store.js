@@ -20,6 +20,7 @@ const store = createStore({
       state.addedUsers = [];
       state.userListGroup = [];
       state.userGroup = [];
+      state.addedGroups = [];
       state.activeChat = {};
       state.messages = [];
       state.messageSize = 0;

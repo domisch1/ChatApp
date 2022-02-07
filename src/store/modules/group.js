@@ -52,7 +52,6 @@ export default {
           userEmails: group.data().userEmails,
           userNames: group.data().userNames,
         });
-        console.log(state.addedGroups);
       });
     },
   },
@@ -77,7 +76,6 @@ export default {
     },
     async openGroupChat(context, payload) {
       context.commit("resetMessages");
-      console.log(payload);
       context.commit("setActiveGroupChat", {
         groupID: payload.groupID,
         groupname: payload.groupname,
@@ -87,7 +85,6 @@ export default {
       context.dispatch("getGroupMessages");
     },
     getGroupMessages(context) {
-      console.log(context.rootState.chatModule.activeChat.groupID);
       const groupChatRef = query(
         collection(
           db,
